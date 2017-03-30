@@ -86,3 +86,4 @@ void incremento(){
 int main(){
 	mayor3();
 }
+
