@@ -20,4 +20,5 @@ int main(){
 		cout <<arreglo[a];
 	
 	return 0;
+	
 }
