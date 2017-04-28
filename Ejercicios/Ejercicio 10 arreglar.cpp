@@ -1,30 +1,53 @@
 #include <iostream>
 using namespace std;
+//p es el punto inicial
+//r es el punto final
 
-int main(int argc, char *argv[]) {
-	
+int mezcla(int lista[],int p,int q,int r){
+	int n1 = q-p+1;
+	int n2 = r-q;
+	int lista1[n1+1];
+	int lista2[n2+1];
+	for(int i=1;i<n1;i++){
+		lista1[i] = lista[p+i-1];
+	}
+	for(int j=1;j<n2;j++){
+		lista2[j] = lista[q+j];
+	}
+	lista1[n1+1] = '\0';
+    	lista2[n2+1] = '\0';
+    	int i = 1,j = 1;
+	for(int k = p;k<r;r++){
+		if(lista1[i] <= lista2[j]){
+		    lista[k] = lista1[i];
+		    i++;
+		}
+        	else{
+            	lista[k] = lista2[j];
+            	j++;
+       		}
+    	}	
+
+}
+int mergesort(int lista[],int p,int r){
+	if(p < r){
+		int q = (p+r)/2;
+		mergesort(lista,p,q);
+		mergesort(lista,q+1,r);
+		mezcla(lista,p,q,r);
+	}
+}
+
+int main(){
+	int listita[] ={5,9,4,2,1,6,3};
+	int inicio = 0;
+	int fin = 7;
+	mergesort(listita,inicio,fin);
+    	for(int i=0;i<7;i++){
+        	cout<<listita[i];
+    }
+
 	return 0;
 }
 
-#1.4 Ordenamiento por mezcla
-#COmpara los primeros elementos de cada lista escoger el menor y y wnviarlo al fin de la lista resultante. cuando una de las dos es vacia
-#solamente falta copiarla al fin de la resultante 
 
-def mezcla(l1,l2):
-	i=0
-	j=0
-	res=[]
-	while i<len(l1) and j<len(l2):
-		if l1[i]<l2[j]:
-			res.append(l1[i])
-			i+=1
-		else:
-			res.append(l2[j])
-			j+=1
-			while i<len(l1):
-				res.append(l1[i])
-				i+=1
-				while j<len(l2):
-					res.append(l2[j])
-					j+=1
-					return res
