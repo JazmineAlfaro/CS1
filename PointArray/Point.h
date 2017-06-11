@@ -14,7 +14,7 @@ public:
 	double getY();
 	void setX(double nx);
 	void setY(double ny);
-	void print();
+	virtual void print();
 	
 };
 #endif

@@ -22,5 +22,5 @@ void Point::setY(double ny){
 	this->y = ny;
 }
 void Point::print(){
-	cout<<x<<y<<endl;
+	cout<<"("<<x<< ","<< y<< ") ";
 }
