@@ -1,11 +1,24 @@
+/// friend class can access the private and protected members of the class in which it is declared as a friend.
+
 #include<iostream>
 #include <vector>
 using namespace std;
+template<class T> class Stack;
+
+template <class T> Stack<T> operator+(const Stack<T> &s1,const Stack<T> &s2){
+	Stack<T> result = s1;
+	for( unsigned i =0; i<s2.pila.size();i++){
+		result.pila.push_back(s2.pila[i]);
+	}
+	return result ;
+}
 
 template<class T> class Stack{
-public:
+private:
 	vector<T> pila;
-
+	friend Stack<T> operator+ <>( const Stack<T> &s1, const Stack<T> &s2);
+	
+public:
 	void push(const T &algo){
 		pila.push_back(algo);
 	}
@@ -36,13 +49,7 @@ public:
 	}
 };
 
-template <class T> Stack<T> operator+(Stack<T> &s1, Stack<T> &s2){
-	Stack<T> result = s1;
-	for( unsigned i =0; i<s2.pila.size();i++){
-		result.pila.push_back(s2.pila[i]);
-	}
-	return result ;
-}
+
 
 int main(){
 	Stack<int> Enteros;
@@ -58,7 +65,7 @@ int main(){
 	Pila.push(7);
 	Pila.push(8);
 	
-	Stack<int> Res = Pila + Enteros; 
+	Stack<int> Res = Enteros + Pila; 
 	Res.print();
 	//cout<<Enteros.top()<<endl;
 	//Enteros.print();
