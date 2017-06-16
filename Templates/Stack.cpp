@@ -15,20 +15,40 @@ template <class T> Stack<T> operator+(const Stack<T> &s1,const Stack<T> &s2){
 }
 
 template <class T> Stack<T> operator-(const Stack<T> &s1,const Stack<T> &s2){
-	Stack<T> result=s1;
-	int tam = s1.pila.size()-1;
-	for(tam;tam>=0;tam--){
-		if(result.pila[tam]== s2.pila[tam])
-			result.pila.erase(result.pila.begin()+tam);
+	Stack<T> result;
+
+	int tam=s1.pila.size();
+	for(int i=0;i<tam;++i){
+		bool p=true;
+		for(int a=0;a<tam;a++){
+			if(s1.pila[i]==s2.pila[a]){
+				p=false;
+				break;
+		}
+		}
+		if(p==true){
+			result.push(s1.pila[i]);
+		}
 	}
 	return result ;
 }
-
+/*
+template <class T> &ostream operator-(const Stack<T> &s){
+	cout<<"Elementos del Stack: "<<endl;
+	cout<< "-----"<<endl;
+	for(int i=pila.size()-1;i>=0;i--){
+		cout<<"| " <<pila[i]<< " |"<<endl;
+		cout<< "-----"<<endl;
+	}
+	
+	
+}*/
 template<class T> class Stack{
 private:
 	vector<T> pila;
 	friend Stack<T> operator+ <>( const Stack<T> &s1, const Stack<T> &s2);
 	friend Stack<T> operator- <>( const Stack<T> &s1, const Stack<T> &s2);
+	//friend Stack<T> operator<< <>( const Stack<T> &s1);
 	
 public:
 	void push(const T &algo){
@@ -73,7 +93,7 @@ int main(){
 	Pila.push(8);
 	Pila.push(6);
 	Pila.push(5);
-
+	
 	
 	Stack<int> Res = Enteros - Pila; 
 	Res.print();
